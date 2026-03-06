@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>さとう社会保険労務士法人</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2744;
+    --navy-light: #253358;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f8f5ef;
+    --warm-white: #fdfcfa;
+    --text-dark: #1a1a2e;
+    --text-mid: #4a4a6a;
+    --text-light: #8a8aaa;
+    --border: #e2ddd4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--warm-white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(26, 39, 68, 0.97);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+    padding: 0 40px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .logo-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .logo-jp {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.1em;
+  }
+
+  nav {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+  nav a {
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+    position: relative;
+  }
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 0;
+    height: 1px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  nav a:hover { color: var(--gold-light); }
+  nav a:hover::after { transform: scaleX(1); }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--navy) !important;
+    padding: 8px 20px;
+    font-weight: 700 !important;
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; }
+  .nav-cta::after { display: none !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 70px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 80% at 20% 30%, rgba(37,51,88,0.8) 0%, transparent 60%);
+  }
+
+  .hero-line {
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 45%;
+    border-left: 1px solid rgba(201,168,76,0.2);
+    background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 80px 80px 80px 100px;
+    max-width: 680px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-badge-line {
+    width: 30px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .hero-badge span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 300;
+    color: #fff;
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero h1 strong {
+    font-weight: 700;
+    color: var(--gold-light);
+    display: block;
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    line-height: 2;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 16px 36px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(201,168,76,0.3);
+  }
+
+  .btn-secondary {
+    border: 1px solid rgba(255,255,255,0.4);
+    color: #fff;
+    padding: 16px 36px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  .hero-stats {
+    position: absolute;
+    right: 80px;
+    bottom: 80px;
+    display: flex;
+    gap: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.1em;
+    margin-top: 6px;
+    display: block;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 100px 0; }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .section-label-line {
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .section-label span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 2;
+    margin-bottom: 60px;
+  }
+
+  /* ── FEATURES ── */
+  .features { background: var(--cream); }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+  }
+
+  .feature-card {
+    background: var(--warm-white);
+    padding: 48px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.4s;
+  }
+  .feature-card:hover { transform: translateY(-4px); }
+  .feature-card:hover::before { transform: scaleX(1); }
+
+  .feature-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    font-weight: 300;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .feature-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .feature-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+  }
+  .feature-desc {
+    font-size: 13px;
+    line-height: 2;
+    color: var(--text-mid);
+  }
+
+  /* ── SERVICES ── */
+  .services { background: var(--warm-white); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .service-card {
+    border: 1px solid var(--border);
+    padding: 40px;
+    position: relative;
+    transition: all 0.3s;
+    background: var(--warm-white);
+  }
+  .service-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 12px 40px rgba(26,39,68,0.08);
+    transform: translateY(-4px);
+  }
+
+  .service-tag {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    padding: 4px 12px;
+    margin-bottom: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    text-transform: uppercase;
+  }
+  .service-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+  }
+  .service-desc {
+    font-size: 13px;
+    line-height: 2;
+    color: var(--text-mid);
+    margin-bottom: 20px;
+  }
+  .service-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .service-list li {
+    font-size: 12px;
+    color: var(--text-mid);
+    padding-left: 16px;
+    position: relative;
+  }
+  .service-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  /* ── ABOUT ── */
+  .about { background: var(--navy); }
+  .about .section-title { color: #fff; }
+  .about .section-sub { color: rgba(255,255,255,0.6); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-text p {
+    font-size: 14px;
+    line-height: 2.2;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 20px;
+  }
+  .about-text .about-name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 20px;
+    color: #fff;
+    font-weight: 600;
+    margin-top: 32px;
+    letter-spacing: 0.1em;
+  }
+  .about-text .about-title {
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-top: 4px;
+  }
+
+  .about-info {
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 48px;
+    background: rgba(255,255,255,0.03);
+  }
+  .about-info-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .info-row {
+    display: flex;
+    gap: 24px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 13px;
+  }
+  .info-label {
+    color: rgba(255,255,255,0.5);
+    min-width: 80px;
+    letter-spacing: 0.05em;
+  }
+  .info-value {
+    color: rgba(255,255,255,0.85);
+    line-height: 1.8;
+  }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--cream); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 80px;
+  }
+
+  .contact-info h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+  }
+  .contact-info p {
+    font-size: 13px;
+    line-height: 2;
+    color: var(--text-mid);
+    margin-bottom: 32px;
+  }
+  .contact-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .contact-item-icon {
+    font-size: 16px;
+    margin-top: 2px;
+    min-width: 20px;
+  }
+  .contact-item-text {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--text-mid);
+  }
+  .contact-item-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--text-light);
+    display: block;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+  }
+
+  .contact-form {
+    background: #fff;
+    padding: 48px;
+    border: 1px solid var(--border);
+  }
+  .form-group { margin-bottom: 20px; }
+  .form-label {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--navy);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .form-label .required {
+    color: var(--gold);
+    margin-left: 4px;
+  }
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    font-size: 14px;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--text-dark);
+    background: var(--warm-white);
+    outline: none;
+    transition: border-color 0.2s;
+    border-radius: 0;
+    appearance: none;
+  }
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    border-color: var(--navy);
+  }
+  .form-textarea { height: 120px; resize: vertical; }
+  .form-submit {
+    width: 100%;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    padding: 16px;
+    font-size: 14px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 8px;
+  }
+  .form-submit:hover {
+    background: var(--navy-light);
+    box-shadow: 0 8px 24px rgba(26,39,68,0.2);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0e1628;
+    padding: 60px 0 30px;
+    color: rgba(255,255,255,0.5);
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 30px;
+  }
+  .footer-logo .logo-jp { font-size: 18px; }
+  .footer-nav {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .footer-nav a {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+  .footer-nav a:hover { color: var(--gold); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    header { padding: 0 20px; }
+    nav { display: none; }
+    .hero-content { padding: 60px 24px; }
+    .hero-stats { display: none; }
+    .section-inner { padding: 0 24px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .footer-top { flex-direction: column; gap: 24px; }
+    .footer-bottom { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <span class="logo-en">Sato SR Corporation</span>
+    <span class="logo-jp">さとう社会保険労務士法人</span>
+  </div>
+  <nav>
+    <a href="#features">選ばれる理由</a>
+    <a href="#services">サービス</a>
+    <a href="#about">事務所案内</a>
+    <a href="#contact" class="nav-cta">無料相談</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-line"></span>
+      <span>Social Insurance Labor Consultant</span>
+    </div>
+    <h1>
+      企業の人事・労務を<br>
+      <strong>安心と信頼で支える</strong>
+    </h1>
+    <p class="hero-desc">
+      さとう社会保険労務士法人は、中小企業の皆さまの<br>
+      労務管理・社会保険手続き・給与計算を<br>
+      専門家チームがトータルサポートいたします。
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">無料相談のお申込み</a>
+      <a href="#services" class="btn-secondary">サービスを見る</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">200<small style="font-size:24px">社</small></span>
+      <span class="stat-label">顧問契約実績</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">15<small style="font-size:24px">年</small></span>
+      <span class="stat-label">豊富な実績</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">98<small style="font-size:24px">%</small></span>
+      <span class="stat-label">顧客継続率</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-inner">
+    <div class="section-label">
+      <span class="section-label-line"></span>
+      <span>Why Choose Us</span>
+    </div>
+    <h2 class="section-title reveal">選ばれる3つの理由</h2>
+    <p class="section-sub reveal">専門知識と誠実な対応で、貴社の経営を力強くサポートします。</p>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <span class="feature-num">01</span>
+        <span class="feature-icon">⚖️</span>
+        <h3 class="feature-title">豊富な専門知識</h3>
+        <p class="feature-desc">社会保険・労働保険・給与計算・就業規則まで、幅広い専門知識を持つ有資格者が直接担当。法改正にも迅速に対応いたします。</p>
+      </div>
+      <div class="feature-card reveal" style="transition-delay:0.1s">
+        <span class="feature-num">02</span>
+        <span class="feature-icon">🤝</span>
+        <h3 class="feature-title">迅速・丁寧な対応</h3>
+        <p class="feature-desc">お問い合わせには原則24時間以内に回答。担当者制により、貴社の状況を深く理解した上で最適な提案をいたします。</p>
+      </div>
+      <div class="feature-card reveal" style="transition-delay:0.2s">
+        <span class="feature-num">03</span>
+        <span class="feature-icon">📊</span>
+        <h3 class="feature-title">明確な料金体系</h3>
+        <p class="feature-desc">わかりやすい料金設定で、追加費用の心配なし。中小企業様にも安心してご利用いただける柔軟なプランをご用意しています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="section-label">
+      <span class="section-label-line"></span>
+      <span>Services</span>
+    </div>
+    <h2 class="section-title reveal">サービス内容</h2>
+    <p class="section-sub reveal">人事・労務に関するあらゆる業務を、ワンストップでサポートいたします。</p>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-tag">Labor Management</span>
+        <h3 class="service-title">労務管理・就業規則</h3>
+        <p class="service-desc">労働法に準拠した就業規則の作成・改訂、労働トラブルの未然防止、職場環境の整備をサポートします。</p>
+        <ul class="service-list">
+          <li>就業規則の作成・変更届</li>
+          <li>労働契約書・各種規程の整備</li>
+          <li>36協定・変形労働時間制の手続き</li>
+          <li>ハラスメント防止対策</li>
+        </ul>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.1s">
+        <span class="service-tag">Social Insurance</span>
+        <h3 class="service-title">社会保険・労働保険手続き</h3>
+        <p class="service-desc">入退社手続きから年度更新・算定基礎届まで、煩雑な社会保険・労働保険の手続きを代行いたします。</p>
+        <ul class="service-list">
+          <li>入社・退社時の各種手続き</li>
+          <li>社会保険の年度更新・算定基礎</li>
+          <li>労働保険の年度更新</li>
+          <li>各種給付申請のサポート</li>
+        </ul>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-tag">Payroll</span>
+        <h3 class="service-title">給与計算・賞与計算</h3>
+        <p class="service-desc">毎月の給与計算を正確・迅速に処理。法改正への対応も含め、ミスのない給与業務を実現します。</p>
+        <ul class="service-list">
+          <li>毎月の給与・賞与計算</li>
+          <li>社会保険料・源泉所得税の計算</li>
+          <li>給与明細の作成・配布</li>
+          <li>賃金台帳・支払調書の作成</li>
+        </ul>
+      </div>
+      <div class="service-card reveal" style="transition-delay:0.1s">
+        <span class="service-tag">Consulting</span>
+        <h3 class="service-title">人事労務コンサルティング</h3>
+        <p class="service-desc">助成金の活用から人事制度の構築まで、企業の成長を人事・労務面から戦略的にサポートします。</p>
+        <ul class="service-list">
+          <li>各種助成金の申請サポート</li>
+          <li>人事評価制度の構築</li>
+          <li>採用・定着支援</li>
+          <li>IPO・M&A対応の労務デューデリ</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="section-label">
+          <span class="section-label-line"></span>
+          <span style="color:var(--gold)">About Us</span>
+        </div>
+        <h2 class="section-title" style="color:#fff">代表ご挨拶</h2>
+        <p>当法人は、中小企業の経営者様が「人」に関する課題を安心して相談できるパートナーでありたいという思いから設立いたしました。</p>
+        <p>労務管理の複雑化や法改正が続く中、専門家として常に最新の知識を持ち、皆さまの事業の安定と発展に貢献できるよう努めてまいります。</p>
+        <p>まずはお気軽にご相談ください。初回相談は無料で承っております。</p>
+        <p class="about-name">さとう　◯◯</p>
+        <p class="about-title">代表社員 / 特定社会保険労務士</p>
+      </div>
+      <div class="about-info reveal" style="transition-delay:0.2s">
+        <p class="about-info-title">Office Information</p>
+        <div class="info-row">
+          <span class="info-label">事務所名</span>
+          <span class="info-value">さとう社会保険労務士法人</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">代表社員</span>
+          <span class="info-value">さとう ◯◯（特定社会保険労務士）</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">所在地</span>
+          <span class="info-value">〒000-0000<br>○○県○○市○○ ○-○-○<br>○○ビル○階</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">電話</span>
+          <span class="info-value">00-0000-0000</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">受付時間</span>
+          <span class="info-value">平日 9:00〜18:00</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">所属</span>
+          <span class="info-value">○○社会保険労務士会</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="section-label">
+      <span class="section-label-line"></span>
+      <span>Contact</span>
+    </div>
+    <h2 class="section-title reveal">お問い合わせ</h2>
+    <p class="section-sub reveal">初回相談は無料です。まずはお気軽にご連絡ください。</p>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>お気軽にご相談ください</h3>
+        <p>人事・労務に関するお悩みやご質問は、どんな小さなことでもお気軽にお問い合わせください。専任の担当者が丁寧にご対応いたします。</p>
+        <div class="contact-detail">
+          <div class="contact-item">
+            <span class="contact-item-icon">📞</span>
+            <div class="contact-item-text">
+              <span class="contact-item-label">TEL</span>
+              00-0000-0000<br>
+              <small style="font-size:11px">平日 9:00〜18:00</small>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-icon">✉️</span>
+            <div class="contact-item-text">
+              <span class="contact-item-label">EMAIL</span>
+              info@sr-sato.com
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-icon">📍</span>
+            <div class="contact-item-text">
+              <span class="contact-item-label">ADDRESS</span>
+              〒000-0000<br>
+              ○○県○○市○○ ○-○-○
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form reveal" style="transition-delay:0.15s">
+        <div class="form-group">
+          <label class="form-label">会社名・お名前<span class="required">*</span></label>
+          <input type="text" class="form-input" placeholder="例：株式会社〇〇 山田太郎">
+        </div>
+        <div class="form-group">
+          <label class="form-label">メールアドレス<span class="required">*</span></label>
+          <input type="email" class="form-input" placeholder="例：info@example.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">電話番号</label>
+          <input type="tel" class="form-input" placeholder="例：00-0000-0000">
+        </div>
+        <div class="form-group">
+          <label class="form-label">お問い合わせ種別<span class="required">*</span></label>
+          <select class="form-select">
+            <option value="">選択してください</option>
+            <option>顧問契約について</option>
+            <option>給与計算のアウトソーシング</option>
+            <option>就業規則の作成・改訂</option>
+            <option>助成金について</option>
+            <option>その他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">お問い合わせ内容</label>
+          <textarea class="form-textarea" placeholder="ご質問やご要望などをご記入ください。"></textarea>
+        </div>
+        <button class="form-submit">送信する →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-logo logo">
+        <span class="logo-en">Sato SR Corporation</span>
+        <span class="logo-jp" style="color:#fff;font-family:'Noto Serif JP',serif;font-size:18px;font-weight:600;letter-spacing:0.1em">さとう社会保険労務士法人</span>
+      </div>
+      <nav class="footer-nav">
+        <a href="#features">選ばれる理由</a>
+        <a href="#services">サービス内容</a>
+        <a href="#about">事務所案内</a>
+        <a href="#contact">お問い合わせ</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 さとう社会保険労務士法人 All Rights Reserved.</span>
+      <span>プライバシーポリシー</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
