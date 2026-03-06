@@ -113,8 +113,8 @@
   .hero-badge::before { content: '💻'; font-size: 13px; }
   .hero h1 {
     font-family: 'Noto Serif JP', serif;
-    font-size: clamp(28px, 3.5vw, 46px); font-weight: 700;
-    color: var(--text-dark); line-height: 1.55; letter-spacing: 0.03em;
+    font-size: clamp(22px, 2.6vw, 36px); font-weight: 700;
+    color: var(--text-dark); line-height: 1.6; letter-spacing: 0.03em;
     margin-bottom: 20px; opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
   }
   .hero h1 .accent {
@@ -397,7 +397,7 @@
       <div class="hero-card">
         <div class="hero-card-icon">⚡</div>
         <div class="hero-card-body">
-          <div class="hero-card-num">初回<small>相談</small>無料</div>
+          <div class="hero-card-num">初回相談無料</div>
           <div class="hero-card-label">まずはお気軽にご相談ください</div>
         </div>
       </div>
@@ -562,7 +562,7 @@
             <div class="contact-item-icon">✉️</div>
             <div>
               <span class="contact-item-label">EMAIL</span>
-              <div class="contact-item-val">kohei.sato@sr-sato.com</div>
+              <div class="contact-item-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="92f9fdfaf7fbbce1f3e6fdd2e1e0bfe1f3e6fdbcf1fdff">[email&#160;protected]</a></div>
             </div>
           </div>
           <div class="contact-item">
@@ -606,12 +606,6 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
-</script>
-</body>
-</html>
+  const obser
