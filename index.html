@@ -4,28 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>さとう社会保険労務士法人</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1a2744;
-    --navy-light: #253358;
-    --gold: #c9a84c;
-    --gold-light: #e8c97a;
-    --cream: #f8f5ef;
-    --warm-white: #fdfcfa;
-    --text-dark: #1a1a2e;
-    --text-mid: #4a4a6a;
-    --text-light: #8a8aaa;
-    --border: #e2ddd4;
+    --blue:       #2563eb;
+    --blue-light: #3b82f6;
+    --blue-pale:  #eff6ff;
+    --blue-mid:   #dbeafe;
+    --green:      #10b981;
+    --text-dark:  #1e293b;
+    --text-mid:   #475569;
+    --text-light: #94a3b8;
+    --bg:         #f8fafc;
+    --white:      #ffffff;
+    --border:     #e2e8f0;
+    --shadow:     0 4px 24px rgba(37,99,235,0.08);
+    --shadow-lg:  0 12px 40px rgba(37,99,235,0.13);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
-
   body {
     font-family: 'Noto Sans JP', sans-serif;
-    background: var(--warm-white);
+    background: var(--bg);
     color: var(--text-dark);
     overflow-x: hidden;
   }
@@ -35,635 +36,307 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 1000;
-    background: rgba(26, 39, 68, 0.97);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(201,168,76,0.3);
-    padding: 0 40px;
-    height: 70px;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    height: 68px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-shadow: 0 1px 12px rgba(0,0,0,0.06);
   }
-
-  .logo {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo-mark {
+    width: 36px; height: 36px;
+    background: var(--blue);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 16px; font-weight: 700;
+    font-family: 'Noto Serif JP', serif; flex-shrink: 0;
   }
-  .logo-en {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    color: var(--gold);
-    text-transform: uppercase;
-  }
-  .logo-jp {
+  .logo-text {
     font-family: 'Noto Serif JP', serif;
-    font-size: 16px;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: 0.1em;
+    font-size: 15px; font-weight: 600;
+    color: var(--text-dark); letter-spacing: 0.04em; line-height: 1.3;
   }
-
-  nav {
-    display: flex;
-    gap: 32px;
-    align-items: center;
+  .logo-sub {
+    font-size: 10px; color: var(--text-light);
+    font-weight: 400; display: block;
   }
+  nav { display: flex; gap: 28px; align-items: center; }
   nav a {
-    font-size: 13px;
-    font-weight: 400;
-    color: rgba(255,255,255,0.8);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    transition: color 0.2s;
-    position: relative;
+    font-size: 13px; font-weight: 500; color: var(--text-mid);
+    text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s;
   }
-  nav a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px; left: 0; right: 0;
-    height: 1px;
-    background: var(--gold);
-    transform: scaleX(0);
-    transition: transform 0.3s;
-  }
-  nav a:hover { color: var(--gold-light); }
-  nav a:hover::after { transform: scaleX(1); }
-
+  nav a:hover { color: var(--blue); }
   .nav-cta {
-    background: var(--gold);
-    color: var(--navy) !important;
-    padding: 8px 20px;
-    font-weight: 700 !important;
-    border-radius: 2px;
-    letter-spacing: 0.06em;
-    transition: background 0.2s !important;
+    background: var(--blue); color: #fff !important;
+    padding: 9px 22px; border-radius: 8px; font-weight: 700 !important;
+    transition: background 0.2s, box-shadow 0.2s !important;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.25);
   }
-  .nav-cta:hover { background: var(--gold-light) !important; }
-  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--blue-light) !important; box-shadow: 0 4px 16px rgba(37,99,235,0.35) !important; }
 
   /* ── HERO ── */
   .hero {
-    min-height: 100vh;
-    background: var(--navy);
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    padding-top: 70px;
+    min-height: 100vh; padding-top: 68px;
+    display: flex; align-items: center;
+    background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 50%, #f0fdf4 100%);
+    position: relative; overflow: hidden;
   }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 80% at 20% 30%, rgba(37,51,88,0.8) 0%, transparent 60%);
+  .hero::before {
+    content: ''; position: absolute; top: -80px; right: -80px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%);
+    border-radius: 50%;
   }
-
-  .hero-line {
-    position: absolute;
-    right: 0; top: 0; bottom: 0;
-    width: 45%;
-    border-left: 1px solid rgba(201,168,76,0.2);
-    background: linear-gradient(135deg, rgba(201,168,76,0.04) 0%, transparent 60%);
+  .hero::after {
+    content: ''; position: absolute; bottom: -60px; left: -60px;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(16,185,129,0.07) 0%, transparent 70%);
+    border-radius: 50%;
   }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 80px 80px 80px 100px;
-    max-width: 680px;
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto; padding: 80px 60px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+    position: relative; z-index: 1; width: 100%;
   }
-
   .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 32px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--blue-pale); border: 1px solid var(--blue-mid);
+    color: var(--blue); font-size: 12px; font-weight: 700;
+    padding: 6px 14px; border-radius: 20px; margin-bottom: 24px;
+    opacity: 0; animation: fadeUp 0.6s 0.1s forwards;
   }
-  .hero-badge-line {
-    width: 30px;
-    height: 1px;
-    background: var(--gold);
-  }
-  .hero-badge span {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
-    letter-spacing: 0.3em;
-    color: var(--gold);
-    text-transform: uppercase;
-  }
-
+  .hero-badge::before { content: '💻'; font-size: 13px; }
   .hero h1 {
     font-family: 'Noto Serif JP', serif;
-    font-size: clamp(32px, 4vw, 52px);
-    font-weight: 300;
-    color: #fff;
-    line-height: 1.6;
-    letter-spacing: 0.05em;
-    margin-bottom: 28px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.4s forwards;
+    font-size: clamp(28px, 3.5vw, 46px); font-weight: 700;
+    color: var(--text-dark); line-height: 1.55; letter-spacing: 0.03em;
+    margin-bottom: 20px; opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
   }
-  .hero h1 strong {
-    font-weight: 700;
-    color: var(--gold-light);
-    display: block;
+  .hero h1 .accent {
+    color: var(--blue); position: relative;
   }
-
+  .hero h1 .accent::after {
+    content: ''; position: absolute; bottom: 2px; left: 0; right: 0;
+    height: 3px; background: linear-gradient(90deg, var(--blue), var(--green));
+    border-radius: 2px;
+  }
   .hero-desc {
-    font-size: 15px;
-    line-height: 2;
-    color: rgba(255,255,255,0.7);
-    margin-bottom: 48px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.6s forwards;
+    font-size: 15px; line-height: 2; color: var(--text-mid);
+    margin-bottom: 36px; opacity: 0; animation: fadeUp 0.6s 0.3s forwards;
   }
-
   .hero-btns {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.8s forwards;
+    display: flex; gap: 14px; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.6s 0.4s forwards;
   }
-
   .btn-primary {
-    background: var(--gold);
-    color: var(--navy);
-    padding: 16px 36px;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    border-radius: 2px;
-    transition: all 0.3s;
-    display: inline-block;
+    background: var(--blue); color: #fff; padding: 14px 32px;
+    border-radius: 10px; font-size: 14px; font-weight: 700;
+    text-decoration: none; display: inline-block; transition: all 0.25s;
+    box-shadow: 0 4px 16px rgba(37,99,235,0.3); letter-spacing: 0.04em;
   }
-  .btn-primary:hover {
-    background: var(--gold-light);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(201,168,76,0.3);
-  }
-
+  .btn-primary:hover { background: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,235,0.4); }
   .btn-secondary {
-    border: 1px solid rgba(255,255,255,0.4);
-    color: #fff;
-    padding: 16px 36px;
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    border-radius: 2px;
-    transition: all 0.3s;
-    display: inline-block;
+    background: var(--white); color: var(--blue); border: 2px solid var(--blue);
+    padding: 14px 32px; border-radius: 10px; font-size: 14px; font-weight: 700;
+    text-decoration: none; display: inline-block; transition: all 0.25s; letter-spacing: 0.04em;
   }
-  .btn-secondary:hover {
-    border-color: var(--gold);
-    color: var(--gold-light);
-    transform: translateY(-2px);
-  }
+  .btn-secondary:hover { background: var(--blue-pale); transform: translateY(-2px); }
 
-  .hero-stats {
-    position: absolute;
-    right: 80px;
-    bottom: 80px;
-    display: flex;
-    gap: 48px;
-    opacity: 0;
-    animation: fadeUp 0.8s 1s forwards;
+  .hero-cards { display: flex; flex-direction: column; gap: 16px; opacity: 0; animation: fadeUp 0.6s 0.5s forwards; }
+  .hero-card {
+    background: var(--white); border-radius: 16px; padding: 24px 28px;
+    box-shadow: var(--shadow); border: 1px solid var(--border);
+    display: flex; align-items: center; gap: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-  .stat { text-align: center; }
-  .stat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 44px;
-    font-weight: 300;
-    color: var(--gold);
-    line-height: 1;
-    display: block;
+  .hero-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .hero-card-icon {
+    font-size: 28px; width: 56px; height: 56px;
+    background: var(--blue-pale); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
-  .stat-label {
-    font-size: 11px;
-    color: rgba(255,255,255,0.6);
-    letter-spacing: 0.1em;
-    margin-top: 6px;
-    display: block;
-  }
+  .hero-card-num { font-family: 'Noto Serif JP', serif; font-size: 24px; font-weight: 700; color: var(--blue); line-height: 1.1; }
+  .hero-card-num small { font-size: 14px; font-weight: 500; }
+  .hero-card-label { font-size: 12px; color: var(--text-mid); margin-top: 3px; }
 
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
   /* ── SECTION COMMON ── */
-  section { padding: 100px 0; }
-
-  .section-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 60px;
+  section { padding: 88px 0; }
+  .section-inner { max-width: 1100px; margin: 0 auto; padding: 0 60px; }
+  .section-eyebrow {
+    font-size: 12px; font-weight: 700; color: var(--blue);
+    letter-spacing: 0.15em; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
   }
-
-  .section-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
+  .section-eyebrow::before {
+    content: ''; width: 20px; height: 2px;
+    background: var(--blue); border-radius: 2px; display: inline-block;
   }
-  .section-label-line {
-    width: 24px;
-    height: 1px;
-    background: var(--gold);
-  }
-  .section-label span {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 12px;
-    letter-spacing: 0.3em;
-    color: var(--gold);
-    text-transform: uppercase;
-  }
-
   .section-title {
     font-family: 'Noto Serif JP', serif;
-    font-size: clamp(24px, 3vw, 36px);
-    font-weight: 600;
-    color: var(--navy);
-    letter-spacing: 0.05em;
-    line-height: 1.5;
-    margin-bottom: 16px;
+    font-size: clamp(22px, 2.8vw, 34px); font-weight: 700;
+    color: var(--text-dark); letter-spacing: 0.03em; line-height: 1.5; margin-bottom: 12px;
   }
-
-  .section-sub {
-    font-size: 14px;
-    color: var(--text-mid);
-    line-height: 2;
-    margin-bottom: 60px;
-  }
+  .section-sub { font-size: 14px; color: var(--text-mid); line-height: 2; margin-bottom: 52px; }
 
   /* ── FEATURES ── */
-  .features { background: var(--cream); }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: var(--border);
-  }
-
+  .features { background: var(--white); }
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .feature-card {
-    background: var(--warm-white);
-    padding: 48px 36px;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 16px; padding: 36px 28px;
+    transition: all 0.25s; position: relative; overflow: hidden;
   }
-  .feature-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--gold);
-    transform: scaleX(0);
-    transition: transform 0.4s;
+  .feature-card::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    border-radius: 16px 16px 0 0; opacity: 0; transition: opacity 0.3s;
   }
-  .feature-card:hover { transform: translateY(-4px); }
-  .feature-card:hover::before { transform: scaleX(1); }
-
-  .feature-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 56px;
-    font-weight: 300;
-    color: var(--border);
-    line-height: 1;
-    margin-bottom: 20px;
-    display: block;
-  }
-  .feature-icon {
-    font-size: 28px;
-    margin-bottom: 16px;
-    display: block;
-  }
-  .feature-title {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--navy);
-    margin-bottom: 12px;
-    letter-spacing: 0.05em;
-  }
-  .feature-desc {
-    font-size: 13px;
-    line-height: 2;
-    color: var(--text-mid);
-  }
+  .feature-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--blue-mid); background: var(--white); }
+  .feature-card:hover::after { opacity: 1; }
+  .feature-icon { font-size: 36px; margin-bottom: 16px; display: block; }
+  .feature-num { font-size: 11px; font-weight: 700; color: var(--blue); letter-spacing: 0.15em; margin-bottom: 8px; display: block; }
+  .feature-title { font-family: 'Noto Serif JP', serif; font-size: 17px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+  .feature-desc { font-size: 13px; line-height: 1.9; color: var(--text-mid); }
 
   /* ── SERVICES ── */
-  .services { background: var(--warm-white); }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-
+  .services { background: var(--bg); }
+  .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .service-card {
-    border: 1px solid var(--border);
-    padding: 40px;
-    position: relative;
-    transition: all 0.3s;
-    background: var(--warm-white);
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 16px; padding: 36px; transition: all 0.25s;
   }
-  .service-card:hover {
-    border-color: var(--gold);
-    box-shadow: 0 12px 40px rgba(26,39,68,0.08);
-    transform: translateY(-4px);
+  .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--blue-mid); }
+  .service-icon-wrap {
+    width: 48px; height: 48px; background: var(--blue-pale); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 18px;
   }
-
-  .service-tag {
-    display: inline-block;
-    background: var(--navy);
-    color: var(--gold);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    padding: 4px 12px;
-    margin-bottom: 20px;
-    font-family: 'Cormorant Garamond', serif;
-    text-transform: uppercase;
-  }
-  .service-title {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--navy);
-    margin-bottom: 12px;
-    letter-spacing: 0.05em;
-  }
-  .service-desc {
-    font-size: 13px;
-    line-height: 2;
-    color: var(--text-mid);
-    margin-bottom: 20px;
-  }
-  .service-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .service-list li {
-    font-size: 12px;
-    color: var(--text-mid);
-    padding-left: 16px;
-    position: relative;
-  }
-  .service-list li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--gold);
-  }
+  .service-title { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+  .service-desc { font-size: 13px; line-height: 1.9; color: var(--text-mid); margin-bottom: 18px; }
+  .service-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .service-list li { font-size: 12px; color: var(--text-mid); padding-left: 18px; position: relative; line-height: 1.7; }
+  .service-list li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; font-size: 11px; }
 
   /* ── ABOUT ── */
-  .about { background: var(--navy); }
-  .about .section-title { color: #fff; }
-  .about .section-sub { color: rgba(255,255,255,0.6); }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
+  .about { background: var(--white); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .about-photo-wrap {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    aspect-ratio: 4/5;
+    max-height: 480px;
   }
-
-  .about-text p {
-    font-size: 14px;
-    line-height: 2.2;
-    color: rgba(255,255,255,0.75);
-    margin-bottom: 20px;
+  .about-photo-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
   }
-  .about-text .about-name {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 20px;
-    color: #fff;
-    font-weight: 600;
-    margin-top: 32px;
-    letter-spacing: 0.1em;
+  .about-text .greeting { font-size: 14px; line-height: 2.1; color: var(--text-mid); margin-bottom: 16px; }
+  .about-profile {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--blue-pale); border-radius: 12px; padding: 20px 24px;
+    margin-top: 28px; border: 1px solid var(--blue-mid);
   }
-  .about-text .about-title {
-    font-size: 12px;
-    color: var(--gold);
-    letter-spacing: 0.2em;
-    margin-top: 4px;
+  .about-avatar-img {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    border: 3px solid var(--blue-mid);
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(37,99,235,0.15);
   }
-
-  .about-info {
-    border: 1px solid rgba(201,168,76,0.3);
-    padding: 48px;
-    background: rgba(255,255,255,0.03);
-  }
+  .about-name { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 700; color: var(--text-dark); }
+  .about-role { font-size: 12px; color: var(--blue); font-weight: 500; margin-top: 3px; }
+  .about-info-box { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; padding: 32px; }
   .about-info-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px;
-    letter-spacing: 0.3em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 28px;
+    font-size: 12px; font-weight: 700; color: var(--blue); letter-spacing: 0.12em;
+    margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--blue-mid);
   }
-  .info-row {
-    display: flex;
-    gap: 24px;
-    padding: 14px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    font-size: 13px;
-  }
-  .info-label {
-    color: rgba(255,255,255,0.5);
-    min-width: 80px;
-    letter-spacing: 0.05em;
-  }
-  .info-value {
-    color: rgba(255,255,255,0.85);
-    line-height: 1.8;
-  }
+  .info-row { display: flex; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 13px; align-items: flex-start; }
+  .info-row:last-child { border-bottom: none; }
+  .info-label { color: var(--text-light); min-width: 72px; font-weight: 500; font-size: 12px; padding-top: 1px; }
+  .info-value { color: var(--text-dark); line-height: 1.8; }
 
   /* ── CONTACT ── */
-  .contact { background: var(--cream); }
-
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 80px;
+  .contact { background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%); }
+  .contact-center { text-align: center; max-width: 640px; margin: 0 auto; }
+  .contact-center .section-eyebrow { justify-content: center; }
+  .contact-center .section-eyebrow::before { display: none; }
+  .contact-center .section-sub { margin-bottom: 40px; }
+  .contact-card {
+    background: var(--white); border-radius: 20px; padding: 48px;
+    box-shadow: var(--shadow-lg); border: 1px solid var(--border);
   }
-
-  .contact-info h3 {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--navy);
-    margin-bottom: 16px;
-    letter-spacing: 0.05em;
+  .contact-info-row {
+    display: flex; align-items: center; justify-content: center;
+    gap: 36px; flex-wrap: wrap; margin-bottom: 36px;
+    padding-bottom: 32px; border-bottom: 1px solid var(--border);
   }
-  .contact-info p {
-    font-size: 13px;
-    line-height: 2;
-    color: var(--text-mid);
-    margin-bottom: 32px;
-  }
-  .contact-detail {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  .contact-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-  }
+  .contact-item { display: flex; align-items: center; gap: 12px; }
   .contact-item-icon {
-    font-size: 16px;
-    margin-top: 2px;
-    min-width: 20px;
+    width: 44px; height: 44px; background: var(--blue-pale); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
   }
-  .contact-item-text {
-    font-size: 13px;
-    line-height: 1.8;
-    color: var(--text-mid);
+  .contact-item-label { font-size: 10px; font-weight: 700; color: var(--text-light); letter-spacing: 0.12em; display: block; margin-bottom: 2px; }
+  .contact-item-val { font-size: 14px; font-weight: 700; color: var(--text-dark); }
+  .contact-item-sub { font-size: 11px; color: var(--text-light); }
+  .form-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--blue); color: #fff; border: none;
+    padding: 18px 48px; font-size: 15px;
+    font-family: 'Noto Sans JP', sans-serif; font-weight: 700;
+    border-radius: 12px; cursor: pointer; transition: all 0.25s;
+    box-shadow: 0 4px 20px rgba(37,99,235,0.35); letter-spacing: 0.06em;
+    text-decoration: none;
   }
-  .contact-item-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: var(--text-light);
-    display: block;
-    margin-bottom: 2px;
-    text-transform: uppercase;
-  }
-
-  .contact-form {
-    background: #fff;
-    padding: 48px;
-    border: 1px solid var(--border);
-  }
-  .form-group { margin-bottom: 20px; }
-  .form-label {
-    display: block;
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    color: var(--navy);
-    margin-bottom: 8px;
-    font-weight: 500;
-  }
-  .form-label .required {
-    color: var(--gold);
-    margin-left: 4px;
-  }
-  .form-input,
-  .form-select,
-  .form-textarea {
-    width: 100%;
-    border: 1px solid var(--border);
-    padding: 12px 16px;
-    font-size: 14px;
-    font-family: 'Noto Sans JP', sans-serif;
-    color: var(--text-dark);
-    background: var(--warm-white);
-    outline: none;
-    transition: border-color 0.2s;
-    border-radius: 0;
-    appearance: none;
-  }
-  .form-input:focus,
-  .form-select:focus,
-  .form-textarea:focus {
-    border-color: var(--navy);
-  }
-  .form-textarea { height: 120px; resize: vertical; }
-  .form-submit {
-    width: 100%;
-    background: var(--navy);
-    color: #fff;
-    border: none;
-    padding: 16px;
-    font-size: 14px;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin-top: 8px;
-  }
-  .form-submit:hover {
-    background: var(--navy-light);
-    box-shadow: 0 8px 24px rgba(26,39,68,0.2);
-  }
+  .form-btn:hover { background: var(--blue-light); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(37,99,235,0.45); }
+  .form-btn-arrow { font-size: 18px; transition: transform 0.2s; }
+  .form-btn:hover .form-btn-arrow { transform: translateX(4px); }
+  .contact-note { font-size: 12px; color: var(--text-light); margin-top: 16px; }
 
   /* ── FOOTER ── */
-  footer {
-    background: #0e1628;
-    padding: 60px 0 30px;
-    color: rgba(255,255,255,0.5);
-  }
-  .footer-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 60px;
-  }
+  footer { background: var(--text-dark); padding: 52px 0 28px; }
+  .footer-inner { max-width: 1100px; margin: 0 auto; padding: 0 60px; }
   .footer-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding-bottom: 40px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    margin-bottom: 30px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 24px;
   }
-  .footer-logo .logo-jp { font-size: 18px; }
-  .footer-nav {
-    display: flex;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
-  .footer-nav a {
-    font-size: 12px;
-    color: rgba(255,255,255,0.5);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    transition: color 0.2s;
-  }
-  .footer-nav a:hover { color: var(--gold); }
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    font-size: 11px;
-    letter-spacing: 0.05em;
-  }
+  .footer-logo-text { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 600; color: #fff; }
+  .footer-logo-sub { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 4px; }
+  .footer-nav { display: flex; gap: 28px; }
+  .footer-nav a { font-size: 12px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .footer-nav a:hover { color: rgba(255,255,255,0.9); }
+  .footer-bottom { display: flex; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,0.35); }
 
-  /* ── SCROLL REVEAL ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s, transform 0.7s;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  /* ── REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s, transform 0.6s; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
   /* ── MOBILE ── */
   @media (max-width: 768px) {
     header { padding: 0 20px; }
-    nav { display: none; }
-    .hero-content { padding: 60px 24px; }
-    .hero-stats { display: none; }
+    nav a:not(.nav-cta) { display: none; }
+    .hero-inner { grid-template-columns: 1fr; padding: 48px 24px; gap: 40px; }
     .section-inner { padding: 0 24px; }
     .features-grid { grid-template-columns: 1fr; }
     .services-grid { grid-template-columns: 1fr; }
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-    .footer-top { flex-direction: column; gap: 24px; }
-    .footer-bottom { flex-direction: column; gap: 8px; }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .contact-info-row { flex-direction: column; gap: 20px; }
+    .contact-card { padding: 32px 20px; }
+    .footer-top { flex-direction: column; gap: 20px; text-align: center; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
   }
 </style>
 </head>
@@ -672,8 +345,11 @@
 <!-- HEADER -->
 <header>
   <div class="logo">
-    <span class="logo-en">Sato SR Corporation</span>
-    <span class="logo-jp">さとう社会保険労務士法人</span>
+    <div class="logo-mark">佐</div>
+    <div>
+      <div class="logo-text">さとう社会保険労務士法人</div>
+      <span class="logo-sub">ITスタートアップ特化 × 山形県鶴岡市</span>
+    </div>
   </div>
   <nav>
     <a href="#features">選ばれる理由</a>
@@ -685,39 +361,46 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-line"></div>
-  <div class="hero-content">
-    <div class="hero-badge">
-      <span class="hero-badge-line"></span>
-      <span>Social Insurance Labor Consultant</span>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">ITスタートアップ特化の社労士法人</div>
+      <h1>
+        スタートアップの成長を<br>
+        <span class="accent">人事・労務</span>の<br>
+        専門家が支える
+      </h1>
+      <p class="hero-desc">
+        顧問先の9割がITスタートアップ・ベンチャー企業。<br>
+        代表自身も50名→400名規模の急成長を経験した、<br>
+        現場を知るITに強い社会保険労務士法人です。
+      </p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">無料相談のお申込み</a>
+        <a href="#services" class="btn-secondary">サービスを見る</a>
+      </div>
     </div>
-    <h1>
-      スタートアップの成長を<br>
-      <strong>人事・労務の専門家が支える</strong>
-    </h1>
-    <p class="hero-desc">
-      顧問先の9割がITスタートアップ・ベンチャー企業。<br>
-      代表自身も50名→400名規模の成長を経験した、<br>
-      ITに強い社会保険労務士法人です。
-    </p>
-    <div class="hero-btns">
-      <a href="#contact" class="btn-primary">無料相談のお申込み</a>
-      <a href="#services" class="btn-secondary">サービスを見る</a>
-    </div>
-  </div>
-  <div class="hero-stats">
-    <div class="stat">
-      <span class="stat-num">9<small style="font-size:24px">割</small></span>
-      <span class="stat-label">IT・スタートアップ顧問先</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">400<small style="font-size:24px">名</small></span>
-      <span class="stat-label">代表の成長支援経験</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">IT<small style="font-size:18px">特化</small></span>
-      <span class="stat-label">スタートアップ労務</span>
+    <div class="hero-cards">
+      <div class="hero-card">
+        <div class="hero-card-icon">💻</div>
+        <div class="hero-card-body">
+          <div class="hero-card-num">9<small>割</small></div>
+          <div class="hero-card-label">顧問先がIT・スタートアップ企業</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">🚀</div>
+        <div class="hero-card-body">
+          <div class="hero-card-num">50<small>名→</small>400<small>名</small></div>
+          <div class="hero-card-label">代表の急成長スタートアップ経験</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">⚡</div>
+        <div class="hero-card-body">
+          <div class="hero-card-num">初回<small>相談</small>無料</div>
+          <div class="hero-card-label">まずはお気軽にご相談ください</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -725,28 +408,25 @@
 <!-- FEATURES -->
 <section class="features" id="features">
   <div class="section-inner">
-    <div class="section-label">
-      <span class="section-label-line"></span>
-      <span>Why Choose Us</span>
-    </div>
-    <h2 class="section-title reveal">選ばれる3つの理由</h2>
-    <p class="section-sub reveal">ITスタートアップの現場を知る社労士だからこそ、スピード感ある対応と実践的なアドバイスが可能です。</p>
+    <div class="section-eyebrow reveal">選ばれる理由</div>
+    <h2 class="section-title reveal">ITスタートアップが選ぶ<br>3つの理由</h2>
+    <p class="section-sub reveal">急成長する組織の現場を知るからこそ、スピード感ある実践的なサポートが可能です。</p>
     <div class="features-grid">
       <div class="feature-card reveal">
-        <span class="feature-num">01</span>
         <span class="feature-icon">💻</span>
+        <span class="feature-num">REASON 01</span>
         <h3 class="feature-title">ITスタートアップ特化</h3>
         <p class="feature-desc">顧問先の9割がITスタートアップ・ベンチャー企業。急成長フェーズの採用・組織拡大・労務整備まで、スタートアップ特有の課題に精通しています。</p>
       </div>
       <div class="feature-card reveal" style="transition-delay:0.1s">
-        <span class="feature-num">02</span>
         <span class="feature-icon">🚀</span>
+        <span class="feature-num">REASON 02</span>
         <h3 class="feature-title">成長の現場を知る代表</h3>
-        <p class="feature-desc">代表自身がスタートアップ（50名→400名規模）の成長を経験。経営者目線で人事・労務の課題を捉え、事業成長を止めない実践的なサポートを提供します。</p>
+        <p class="feature-desc">代表自身がスタートアップ（50名→400名規模）の成長を経験。経営者目線で課題を捉え、事業成長を止めない実践的なサポートを提供します。</p>
       </div>
       <div class="feature-card reveal" style="transition-delay:0.2s">
-        <span class="feature-num">03</span>
         <span class="feature-icon">⚡</span>
+        <span class="feature-num">REASON 03</span>
         <h3 class="feature-title">スピーディーな対応</h3>
         <p class="feature-desc">スタートアップのスピード感に合わせた迅速対応。Slack・チャットツールでの連絡も対応可能。法改正や急な人事異動にも柔軟に対処します。</p>
       </div>
@@ -757,15 +437,12 @@
 <!-- SERVICES -->
 <section class="services" id="services">
   <div class="section-inner">
-    <div class="section-label">
-      <span class="section-label-line"></span>
-      <span>Services</span>
-    </div>
-    <h2 class="section-title reveal">サービス内容</h2>
-    <p class="section-sub reveal">人事・労務に関するあらゆる業務を、ワンストップでサポートいたします。</p>
+    <div class="section-eyebrow reveal">サービス内容</div>
+    <h2 class="section-title reveal">人事・労務をワンストップで</h2>
+    <p class="section-sub reveal">スタートアップの成長フェーズに合わせた、柔軟なサービスを提供しています。</p>
     <div class="services-grid">
       <div class="service-card reveal">
-        <span class="service-tag">Labor Management</span>
+        <div class="service-icon-wrap">⚖️</div>
         <h3 class="service-title">労務管理・就業規則</h3>
         <p class="service-desc">労働法に準拠した就業規則の作成・改訂、労働トラブルの未然防止、職場環境の整備をサポートします。</p>
         <ul class="service-list">
@@ -776,7 +453,7 @@
         </ul>
       </div>
       <div class="service-card reveal" style="transition-delay:0.1s">
-        <span class="service-tag">Social Insurance</span>
+        <div class="service-icon-wrap">🏥</div>
         <h3 class="service-title">社会保険・労働保険手続き</h3>
         <p class="service-desc">入退社手続きから年度更新・算定基礎届まで、煩雑な社会保険・労働保険の手続きを代行いたします。</p>
         <ul class="service-list">
@@ -787,7 +464,7 @@
         </ul>
       </div>
       <div class="service-card reveal">
-        <span class="service-tag">Payroll</span>
+        <div class="service-icon-wrap">💰</div>
         <h3 class="service-title">給与計算・賞与計算</h3>
         <p class="service-desc">毎月の給与計算を正確・迅速に処理。法改正への対応も含め、ミスのない給与業務を実現します。</p>
         <ul class="service-list">
@@ -798,14 +475,14 @@
         </ul>
       </div>
       <div class="service-card reveal" style="transition-delay:0.1s">
-        <span class="service-tag">Consulting</span>
+        <div class="service-icon-wrap">📈</div>
         <h3 class="service-title">人事労務コンサルティング</h3>
-        <p class="service-desc">助成金の活用から人事制度の構築まで、企業の成長を人事・労務面から戦略的にサポートします。</p>
+        <p class="service-desc">助成金の活用から人事制度の構築まで、スタートアップの成長を人事・労務面から戦略的にサポートします。</p>
         <ul class="service-list">
           <li>各種助成金の申請サポート</li>
           <li>人事評価制度の構築</li>
           <li>採用・定着支援</li>
-          <li>IPO・M&A対応の労務デューデリ</li>
+          <li>IPO・M&amp;A対応の労務デューデリ</li>
         </ul>
       </div>
     </div>
@@ -815,21 +492,26 @@
 <!-- ABOUT -->
 <section class="about" id="about">
   <div class="section-inner">
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <div class="section-label">
-          <span class="section-label-line"></span>
-          <span style="color:var(--gold)">About Us</span>
-        </div>
-        <h2 class="section-title" style="color:#fff">代表ご挨拶</h2>
-        <p>当法人は、ITスタートアップ・ベンチャー企業の経営者様が「人」に関する課題を安心して相談できるパートナーでありたいという思いから設立いたしました。</p>
-        <p>私自身、スタートアップが50名から400名規模へと急成長する現場を経験してきました。その経験を活かし、採用拡大・組織整備・労務リスク管理など、成長フェーズに合わせた実践的なサポートを提供しています。</p>
-        <p>まずはお気軽にご相談ください。初回相談は無料で承っております。</p>
-        <p class="about-name">佐藤　耕平</p>
-        <p class="about-title">代表社員 / 社会保険労務士</p>
+    <div class="about-grid" style="grid-template-columns: 1fr 1.4fr 1fr;">
+      <div class="about-photo-wrap reveal">
+        <img src="profile.jpg" alt="代表社員 佐藤耕平">
       </div>
-      <div class="about-info reveal" style="transition-delay:0.2s">
-        <p class="about-info-title">Office Information</p>
+      <div class="about-text reveal" style="transition-delay:0.1s">
+        <div class="section-eyebrow">代表ご挨拶</div>
+        <h2 class="section-title">ITスタートアップの<br>人事・労務パートナーとして</h2>
+        <p class="greeting">当法人は、ITスタートアップ・ベンチャー企業の経営者様が「人」に関する課題を安心して相談できるパートナーでありたいという思いから設立いたしました。</p>
+        <p class="greeting">私自身、スタートアップが50名から400名規模へと急成長する現場を経験してきました。その経験を活かし、採用拡大・組織整備・労務リスク管理など、成長フェーズに合わせた実践的なサポートを提供しています。</p>
+        <p class="greeting">まずはお気軽にご相談ください。初回相談は無料で承っております。</p>
+        <div class="about-profile">
+          <img src="profile.jpg" alt="佐藤耕平" class="about-avatar-img">
+          <div>
+            <div class="about-name">佐藤　耕平</div>
+            <div class="about-role">代表社員 ／ 社会保険労務士</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-info-box reveal" style="transition-delay:0.15s">
+        <div class="about-info-title">事務所情報</div>
         <div class="info-row">
           <span class="info-label">事務所名</span>
           <span class="info-value">さとう社会保険労務士法人</span>
@@ -862,75 +544,41 @@
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="section-inner">
-    <div class="section-label">
-      <span class="section-label-line"></span>
-      <span>Contact</span>
-    </div>
-    <h2 class="section-title reveal">お問い合わせ</h2>
-    <p class="section-sub reveal">初回相談は無料です。まずはお気軽にご連絡ください。</p>
-    <div class="contact-grid">
-      <div class="contact-info reveal">
-        <h3>お気軽にご相談ください</h3>
-        <p>ITスタートアップ・ベンチャー企業の人事・労務に関するお悩みは、どんな小さなことでもお気軽にお問い合わせください。初回相談は無料です。</p>
-        <div class="contact-detail">
+    <div class="contact-center reveal">
+      <div class="section-eyebrow">お問い合わせ</div>
+      <h2 class="section-title">初回相談は無料です</h2>
+      <p class="section-sub">ITスタートアップ・ベンチャー企業の人事・労務に関するお悩みは、どんな小さなことでもお気軽にご相談ください。</p>
+      <div class="contact-card">
+        <div class="contact-info-row">
           <div class="contact-item">
-            <span class="contact-item-icon">📞</span>
-            <div class="contact-item-text">
+            <div class="contact-item-icon">📞</div>
+            <div>
               <span class="contact-item-label">TEL</span>
-              080-4139-9292<br>
-              <small style="font-size:11px">平日 9:00〜18:00</small>
+              <div class="contact-item-val">080-4139-9292</div>
+              <div class="contact-item-sub">平日 9:00〜18:00</div>
             </div>
           </div>
           <div class="contact-item">
-            <span class="contact-item-icon">✉️</span>
-            <div class="contact-item-text">
+            <div class="contact-item-icon">✉️</div>
+            <div>
               <span class="contact-item-label">EMAIL</span>
-              kohei.sato@sr-sato.com
+              <div class="contact-item-val">kohei.sato@sr-sato.com</div>
             </div>
           </div>
           <div class="contact-item">
-            <span class="contact-item-icon">📍</span>
-            <div class="contact-item-text">
+            <div class="contact-item-icon">📍</div>
+            <div>
               <span class="contact-item-label">ADDRESS</span>
-              〒997-0036<br>
-              山形県鶴岡市家中新町
+              <div class="contact-item-val">山形県鶴岡市家中新町</div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="contact-form reveal" style="transition-delay:0.15s">
-        <div class="form-group">
-          <label class="form-label">会社名・お名前<span class="required">*</span></label>
-          <input type="text" id="f-name" class="form-input" placeholder="例：株式会社〇〇 山田太郎">
-        </div>
-        <div class="form-group">
-          <label class="form-label">メールアドレス<span class="required">*</span></label>
-          <input type="email" id="f-email" class="form-input" placeholder="例：info@example.com">
-        </div>
-        <div class="form-group">
-          <label class="form-label">電話番号</label>
-          <input type="tel" id="f-tel" class="form-input" placeholder="例：080-0000-0000">
-        </div>
-        <div class="form-group">
-          <label class="form-label">お問い合わせ種別<span class="required">*</span></label>
-          <select id="f-type" class="form-select">
-            <option value="">選択してください</option>
-            <option>顧問契約について</option>
-            <option>給与計算のアウトソーシング</option>
-            <option>就業規則の作成・改訂</option>
-            <option>助成金について</option>
-            <option>スタートアップの労務整備</option>
-            <option>その他</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">お問い合わせ内容</label>
-          <textarea id="f-body" class="form-textarea" placeholder="ご質問やご要望などをご記入ください。"></textarea>
-        </div>
-        <p style="font-size:12px;color:var(--text-light);margin-bottom:12px;">
-          ※ 送信ボタンを押すとGoogleフォームが開きます。入力内容を貼り付けてご送信ください。
-        </p>
-        <button class="form-submit" onclick="openGoogleForm()">お問い合わせフォームを開く →</button>
+        <!-- ★ href の YOUR_FORM_ID をGoogleフォームのURLに差し替えてください -->
+        <a href="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform" target="_blank" class="form-btn">
+          お問い合わせフォームを開く
+          <span class="form-btn-arrow">→</span>
+        </a>
+        <p class="contact-note">※ Googleフォームが開きます。送信後、担当者よりご連絡いたします。</p>
       </div>
     </div>
   </div>
@@ -940,9 +588,9 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
-      <div class="footer-logo logo">
-        <span class="logo-en">Sato SR Corporation</span>
-        <span class="logo-jp" style="color:#fff;font-family:'Noto Serif JP',serif;font-size:18px;font-weight:600;letter-spacing:0.1em">さとう社会保険労務士法人</span>
+      <div>
+        <div class="footer-logo-text">さとう社会保険労務士法人</div>
+        <div class="footer-logo-sub">ITスタートアップ特化 ／ 山形県鶴岡市</div>
       </div>
       <nav class="footer-nav">
         <a href="#features">選ばれる理由</a>
@@ -959,32 +607,11 @@
 </footer>
 
 <script>
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-      }
-    });
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
-
-  // Google Form opener
-  // ★ 下記URLをGoogleフォーム作成後に差し替えてください
-  const GOOGLE_FORM_URL = 'https://forms.gle/dLUMTGN1jnGo3oYf7';
-
-  function openGoogleForm() {
-    const name = document.getElementById('f-name').value;
-    const email = document.getElementById('f-email').value;
-    const tel = document.getElementById('f-tel').value;
-    const type = document.getElementById('f-type').value;
-    const body = document.getElementById('f-body').value;
-
-    if (!name || !email || !type) {
-      alert('会社名・お名前、メールアドレス、お問い合わせ種別は必須項目です。');
-      return;
-    }
-    window.open(GOOGLE_FORM_URL, '_blank');
-  }
 </script>
+</body>
+</html>
